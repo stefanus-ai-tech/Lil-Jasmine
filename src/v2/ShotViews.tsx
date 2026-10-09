@@ -176,17 +176,18 @@ const Spiral: React.FC<ShotProps> = ({t, lt, s, n}) => {
 // ---------------------------------------------------------------- ridges
 /** Stacked melodic contour lines, each echoing the lead line a moment later. */
 const Ridges: React.FC<ShotProps> = ({t, lt, s, n}) => {
-	const LINES = 15;
+	const LINES = 17;
 	const span = 2.6;
 	const out: React.ReactNode[] = [];
 	const reveal = clamp(lt / 1.2, 0, 1);
 	for (let j = 0; j < LINES; j++) {
-		const y0 = -560 + j * 80;
+		const y0 = -680 + j * 82;
 		const delay = (LINES - 1 - j) * 0.09;
 		const pts: Pt[] = [];
-		for (let i = 0; i <= 48; i++) {
-			const x = -720 + (i / 48) * 1440;
-			const tau = t - delay - span * (1 - i / 48);
+		// lines run well past the frame so any roll (up to 90°) still fills it
+		for (let i = 0; i <= 64; i++) {
+			const x = -1200 + (i / 64) * 2400;
+			const tau = t - delay - span * Math.max(0, 0.5 - x / 1440);
 			const env = Math.exp(-Math.pow(x / 300, 2));
 			const m = melodyNorm(tau);
 			const jitter = Math.sin(tau * 9 + j) * 8;
@@ -198,7 +199,7 @@ const Ridges: React.FC<ShotProps> = ({t, lt, s, n}) => {
 		const vis = clamp(reveal * LINES - (LINES - 1 - j) * 0.6, 0, 1);
 		out.push(
 			<g key={j} opacity={vis}>
-				<path d={`${d}L720,${y0 + 400}L-720,${y0 + 400}Z`} fill={rgb(n.ink, 0.93)} />
+				<path d={`${d}L1200,${y0 + 1400}L-1200,${y0 + 1400}Z`} fill={rgb(n.ink, 0.93)} />
 				<Glow d={d} c={c} w={1.6} />
 			</g>,
 		);
