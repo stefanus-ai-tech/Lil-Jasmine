@@ -1,6 +1,7 @@
 import React from 'react';
 import {Composition} from 'remotion';
 import {LilJasmine} from './LilJasmine';
+import {Nocturne} from './v2/Nocturne';
 import {A, FPS} from './lib/timeline';
 import {H, W} from './lib/stage';
 
@@ -15,6 +16,17 @@ export const RemotionRoot: React.FC = () => (
 		<Composition
 			id="LilJasmineReel"
 			component={LilJasmine}
+			durationInFrames={Math.round((REEL_END - REEL_START) * FPS)}
+			fps={FPS}
+			width={W}
+			height={H}
+			defaultProps={{startAt: REEL_START}}
+		/>
+		{/* Darker, faster, beat-cut "Nocturne" edit of the same song */}
+		<Composition id="LilJasmineNocturne" component={Nocturne} durationInFrames={A.nFrames} fps={FPS} width={W} height={H} defaultProps={{startAt: 0}} />
+		<Composition
+			id="LilJasmineNocturneReel"
+			component={Nocturne}
 			durationInFrames={Math.round((REEL_END - REEL_START) * FPS)}
 			fps={FPS}
 			width={W}

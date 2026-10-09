@@ -10,14 +10,32 @@ npm install
 npm run dev        # Remotion Studio: scrub and preview with the audio
 npm run render     # full song  -> out/lil-jasmine-mv.mp4
 npx remotion render LilJasmineReel out/lil-jasmine-reel.mp4   # ~57 s cut (build -> drop 1)
+npx remotion render LilJasmineNocturne out/lil-jasmine-nocturne.mp4   # dark, beat-cut edit
 ```
 
-There are two compositions:
+There are four compositions:
 
 | id | length | use |
 |---|---|---|
 | `LilJasmine` | 3:22, the full song | TikTok |
 | `LilJasmineReel` | 0:57, from 0:45.8 (pre-drop build) to 1:43 | Reels (the 3-minute cap rules out the full song), Shorts |
+| `LilJasmineNocturne` | 3:22 | darker, faster, beat-cut edit (see below) |
+| `LilJasmineNocturneReel` | 0:57 | Nocturne, same cut points as the reel |
+
+## Nocturne edit
+
+A second take on the same analysis: a dark plum night sky with the chord palettes re-lit as neon pastels.
+
+- **Unpredictable, on the beat.** `src/v2/shots.ts` pre-cuts the song into about 90 shots. Each cut lands on a beat. Shots last 0.5–2 bars and get shorter in the drops. Each shot draws its visual, symmetry, spin direction, zoom and roll from a seeded random, so the edit never settles but renders the same every time.
+- **Seven visuals, all melody-driven:**
+  - kaleidoscope flower with melody petals
+  - contour-ring tunnel rushing at the camera on every half beat
+  - golden-angle spiral with a beat wave
+  - stacked "ridge" lines echoing the lead line
+  - giant close-up jasmine
+  - note constellation: one blossom per note, higher notes sit higher, joined in order
+  - radial vines swaying with the melody
+- **Something new every frame:** a spark leaves the centre every frame, with more and faster sparks when the track is loud. The outgoing shot zooms through each cut, a tinted flash marks it, and the kicks bloom the centre of the frame.
 
 ## How the visuals follow the music
 

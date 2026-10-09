@@ -103,6 +103,11 @@ export const mixLab = (a: RGB, b: RGB, t: number): RGB => {
 	}
 	return fromOklab([Math.min(0.99, x[0] + (y[0] - x[0]) * t + lift), A, B]);
 };
+/** Scale a colour's OKLab chroma (k > 1 = more vivid), optionally shifting lightness. */
+export const saturate = (c: RGB, k: number, dL = 0): RGB => {
+	const [L, a, b] = toOklab(c);
+	return fromOklab([Math.min(0.99, Math.max(0, L + dL)), a * k, b * k]);
+};
 export const rgb = (c: RGB, alpha = 1) =>
 	`rgba(${Math.round(c[0])},${Math.round(c[1])},${Math.round(c[2])},${alpha.toFixed(3)})`;
 export const lighten = (c: RGB, t: number): RGB => mix(c, [255, 255, 255], t);
